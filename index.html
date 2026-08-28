@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CapJas Corner - Cappucino Cincau & Jasuke Juara</title>
+    <meta name="description" content="Es Cappucino Cincau segar & Jagung Susu Keju (Jasuke) nikmat dari CapJas Corner.">
+
+    <!-- Favicon Logo -->
+    <link rel="icon" type="image/png" href="assets/img/logo.png">
+    <link rel="shortcut icon" href="assets/img/logo.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#26140A',       // Rich Mocha Dark Chocolate
+                            primary: '#3D2012',    // Warm Chocolate Accent
+                            gold: '#F59E0B',       // Golden Yellow Accent
+                            'gold-hover': '#D97706',
+                            cream: '#FAF7F2',      // Cream Background
+                            'cream-light': '#FFFDF9',
+                            muted: '#8A766B',
+                            border: 'rgba(38, 20, 10, 0.08)'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lenis Smooth Scroll CSS -->
+    <style>
+        html.lenis, html.lenis body {
+            height: auto;
+        }
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+        .lenis.lenis-prevent {
+            overscroll-behavior: contain;
+        }
+        .lenis.lenis-stopped {
+            overflow: hidden;
+        }
+        .lenis.lenis-scrolling iframe {
+            pointer-events: none;
+        }
+
+        /* Active Nav Link Styling */
+        .nav-link {
+            position: relative;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            transition: color 0.2s ease-in-out;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background-color: #F59E0B;
+            border-radius: 9999px;
+            transition: width 0.25s ease-in-out;
+        }
+
+        .nav-link.active {
+            color: #26140A;
+            font-weight: 800;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Fast touch response */
+        a, button, select, input, textarea {
+            touch-action: manipulation;
+        }
+    </style>
+</head>
+<body class="bg-white text-brand-dark font-sans antialiased selection:bg-brand-gold selection:text-brand-dark overflow-x-hidden">
+
+    <!-- ANNOUNCEMENT TOP BAR (Optional) -->
+    <!-- <div class="bg-brand-dark text-white py-2 px-4 text-center text-xs font-bold tracking-wide">
+        PROMO BUNDLING SPESIAL: <span class="text-brand-gold">Jasuke + Cappucino Cincau Hanya Rp 12.000!</span>
+    </div> -->
+
+    <!-- NAVBAR WITH ACTIVE INDICATOR & BRAND LOGO -->
+    <header id="main-navbar" class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-brand-border transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                
+                <!-- Brand Logo with Product Asset Icon -->
+                <a href="#beranda" class="flex items-center gap-2.5 sm:gap-3.5 group">
+                    <div class="w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center transition-transform duration-300">
+                        <img src="assets/img/logo.png" alt="CapJas Logo Icon" class="h-full object-contain">
+                    </div>
+                    <div>
+                        <span class="font-black text-xl sm:text-2xl tracking-tight text-brand-dark block leading-none">
+                            CapJas Corner
+                        </span>
+                        <span class="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-widest text-brand-muted block mt-1">
+                            Capcin & Jasuke
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links with Active Line Underline -->
+                <nav class="hidden md:flex items-center gap-8 font-semibold text-sm text-brand-dark/70" id="desktop-nav">
+                    <a href="#beranda" class="nav-link active" data-section="beranda">Beranda</a>
+                    <a href="#bundling" class="nav-link flex items-center gap-1.5" data-section="bundling">
+                        <span class="px-2 py-0.5 rounded-full text-[10px] font-black bg-brand-gold text-brand-dark">HOT</span>
+                        Paket Bundling
+                    </a>
+                    <a href="#menu" class="nav-link" data-section="menu">Menu Alacarte</a>
+                    <a href="#harga" class="nav-link" data-section="harga">Info Harga</a>
+                </nav>
+
+                <!-- Desktop CTA Button -->
+                <div class="hidden md:block">
+                    <a href="#pesan" class="px-6 py-3 rounded-xl bg-brand-dark text-white font-bold text-sm hover:bg-brand-gold hover:text-brand-dark transition-all duration-300 inline-flex items-center gap-2">
+                        <span>Pesan via WhatsApp</span>
+                        <i class="fa-brands fa-whatsapp text-base"></i>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Hamburger Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 sm:p-2.5 rounded-xl bg-brand-cream text-brand-dark hover:bg-amber-100 transition-colors focus:outline-none" aria-label="Toggle Menu">
+                    <i class="fa-solid fa-bars text-base sm:text-lg" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown (Clean Floating Sheet) -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-brand-border bg-white px-4 py-4 space-y-2 font-semibold text-sm shadow-xl">
+            <a href="#beranda" class="mobile-nav-item block px-4 py-3 rounded-xl text-brand-dark hover:bg-brand-cream active:bg-amber-100 transition-colors">
+                Beranda
+            </a>
+            <a href="#bundling" class="mobile-nav-item block px-4 py-3 rounded-xl text-brand-dark hover:bg-brand-cream active:bg-amber-100 transition-colors flex items-center justify-between">
+                <span>Paket Bundling</span>
+                <span class="text-xs bg-brand-gold text-brand-dark font-black px-2.5 py-0.5 rounded-full">Hemat</span>
+            </a>
+            <a href="#menu" class="mobile-nav-item block px-4 py-3 rounded-xl text-brand-dark hover:bg-brand-cream active:bg-amber-100 transition-colors">
+                Menu Alacarte
+            </a>
+            <a href="#harga" class="mobile-nav-item block px-4 py-3 rounded-xl text-brand-dark hover:bg-brand-cream active:bg-amber-100 transition-colors">
+                Info Harga Resmi
+            </a>
+            <div class="pt-2">
+                <a href="#pesan" class="block w-full text-center py-3.5 rounded-xl bg-brand-dark text-white font-extrabold text-sm active:bg-brand-gold active:text-brand-dark transition-colors flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-base"></i>
+                    <span>Pesan via WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- HERO SECTION (ULTRA CLEAN & RESPONSIVE FOR MOBILE) -->
+        <section id="beranda" class="py-8 sm:py-16 md:py-24 bg-brand-cream border-b border-brand-border relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
+                    
+                    <!-- Left Hero Content -->
+                    <div class="lg:col-span-6 space-y-4 sm:space-y-6 text-center md:text-left">
+                        
+                        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-brand-dark leading-tight tracking-tight">
+                            Segarnya Capcin <br class="hidden sm:inline">
+                            <span class="px-4 py-2 sm:px-6 sm:py-3 bg-brand-gold text-white rounded-xl sm:rounded-md mt-2 inline-block font-bold text-2xl sm:text-5xl lg:text-6xl">Lembutnya Jasuke</span>
+                        </h1>
+
+                        <p class="text-sm sm:text-base md:text-lg text-brand-dark/75 font-medium max-w-xl leading-relaxed mx-auto md:mx-0">
+                            Nikmati segarnya Es Cappucino Cincau dingin berpadu dengan gurih manisnya Jagung Kukus Susu Keju parut melimpah. Segar, nikmat, & higienis!
+                        </p>
+
+                        <!-- Clean Price Badges Row (Optimized 3-Column Grid for Mobile) -->
+                        <div class="grid grid-cols-3 gap-2 sm:gap-4 max-w-sm sm:max-w-md mx-auto md:mx-0 pt-1">
+                            <div class="bg-white px-2.5 sm:px-4 py-2.5 rounded-xl sm:rounded-2xl border border-brand-border text-center">
+                                <span class="block text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider text-brand-muted">Jasuke</span>
+                                <span class="text-sm sm:text-xl font-black text-brand-dark">Rp 6.000</span>
+                            </div>
+                            <div class="bg-white px-2.5 sm:px-4 py-2.5 rounded-xl sm:rounded-2xl border border-brand-border text-center">
+                                <span class="block text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider text-brand-muted">Capcin</span>
+                                <span class="text-sm sm:text-xl font-black text-brand-dark">Rp 7.000</span>
+                            </div>
+                            <div class="bg-brand-gold px-2.5 sm:px-4 py-2.5 rounded-xl sm:rounded-2xl border border-amber-400 text-center">
+                                <span class="block text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider text-brand-dark/80">Bundling</span>
+                                <span class="text-sm sm:text-xl font-black text-brand-dark">Rp 12.000</span>
+                            </div>
+                        </div>
+
+                        <!-- CTA Buttons -->
+                        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 w-full max-w-md mx-auto md:mx-0">
+                            <a href="#bundling" class="w-full sm:w-auto px-6 py-3.5 rounded-xl sm:rounded-2xl bg-brand-gold text-brand-dark font-extrabold text-sm sm:text-base hover:bg-brand-gold-hover transition-colors text-center shadow-sm">
+                                Lihat Paket Bundling
+                            </a>
+                            <a href="#pesan" class="w-full sm:w-auto px-6 py-3.5 rounded-xl sm:rounded-2xl bg-white text-brand-dark font-bold text-sm sm:text-base border border-brand-border hover:bg-amber-50 transition-colors text-center">
+                                Pesan Sekarang
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Hero Large Cutout (Optimized Sizing for Mobile Screens) -->
+                    <div class="lg:col-span-6 flex justify-center items-center py-2 sm:py-4">
+                        <div class="relative w-full flex items-center justify-center p-2 sm:p-4">
+                            <img src="assets/img/bundling.png" alt="Foto Asli Bundling CapJas Corner" class="w-full max-w-xs sm:max-w-md md:max-w-2xl max-h-[340px] sm:max-h-[480px] md:max-h-[640px] object-contain hover:scale-105 transition-transform duration-500 cursor-pointer">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- HIGHLIGHT FEATURE: BUNDLING SECTION -->
+        <section id="bundling" class="py-12 sm:py-16 md:py-24 bg-white border-b border-brand-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-14 space-y-2.5">
+                    <span class="px-3.5 py-1.5 rounded-full bg-brand-gold/15 text-brand-dark font-extrabold text-xs uppercase tracking-wider inline-block">
+                        Pilihan Paling Hemat
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-black text-brand-dark">
+                        Paket Bundling Spesial
+                    </h2>
+                    <p class="text-brand-dark/70 font-medium text-sm sm:text-base">
+                        Satu paket lengkap 1 Porsi Jasuke hangat melimpah & 1 Cup Es Cappucino Cincau segar. Lebih puas, lebih hemat!
+                    </p>
+                </div>
+
+                <!-- Bundling Main Presentation Card (Responsive Layout) -->
+                <div class="bg-brand-cream rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-12 border border-brand-border grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 items-center">
+                    
+                    <!-- Bundling Image Cutout -->
+                    <div class="lg:col-span-6 flex justify-center items-center p-2 sm:p-4">
+                        <img src="assets/img/bundling.png" alt="Foto Bundling CapJas" class="w-full max-w-xs sm:max-w-md md:max-w-xl max-h-[260px] sm:max-h-[380px] md:max-h-[460px] object-contain hover:scale-105 transition-transform duration-300">
+                    </div>
+
+                    <div class="lg:col-span-6 space-y-4 sm:space-y-6 text-left">
+                        <div class="flex items-center gap-2.5 flex-wrap">
+                            <span class="bg-brand-gold text-brand-dark font-black text-[11px] sm:text-xs px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full uppercase flex items-center gap-1.5">
+                                <span>Best Seller Combo</span>
+                                <i class="fa-solid fa-star text-[10px]"></i>
+                            </span>
+                            <span class="text-[11px] sm:text-xs font-bold text-emerald-700 bg-emerald-100 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-emerald-200">
+                                Hemat Rp 1.000!
+                            </span>
+                        </div>
+
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-brand-dark">
+                            Bundling (Jasuke + Capcin)
+                        </h3>
+
+                        <p class="text-brand-dark/75 text-sm sm:text-base font-medium leading-relaxed">
+                            Kombinasi sempurna 1 Porsi Jasuke hangat bertabur keju cheddar melimpah dan 1 Cup Es Cappucino Cincau dingin segar. Pas buat teman nongkrong & ngemil!
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 font-semibold text-sm text-brand-dark">
+                            <div class="flex items-center gap-3 bg-white p-3 rounded-xl sm:rounded-2xl border border-brand-border">
+                                <span class="w-8 h-8 rounded-xl bg-amber-100 text-brand-dark flex items-center justify-center text-sm shrink-0">
+                                    <i class="fa-solid fa-bowl-food"></i>
+                                </span>
+                                <div>
+                                    <div class="font-bold text-xs sm:text-sm">1x Jasuke Original</div>
+                                    <div class="text-[10px] sm:text-[11px] text-brand-muted">Susu & Keju Melimpah</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 bg-white p-3 rounded-xl sm:rounded-2xl border border-brand-border">
+                                <span class="w-8 h-8 rounded-xl bg-amber-100 text-brand-dark flex items-center justify-center text-sm shrink-0">
+                                    <i class="fa-solid fa-mug-saucer"></i>
+                                </span>
+                                <div>
+                                    <div class="font-bold text-xs sm:text-sm">1x Cappucino Cincau</div>
+                                    <div class="text-[10px] sm:text-[11px] text-brand-muted">Kopi Cincau Hitam Segar</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-brand-border flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <div>
+                                <span class="text-xs font-semibold text-brand-muted line-through">Harga Satuan: Rp 13.000</span>
+                                <div class="text-2xl sm:text-3xl font-black text-brand-dark">Rp 12.000</div>
+                            </div>
+                            <button onclick="pilihMenu('Bundling (Jasuke + Capcin)', 12000)" class="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl bg-brand-dark text-white font-extrabold text-sm hover:bg-brand-gold hover:text-brand-dark transition-colors shadow-sm text-center">
+                                Pesan Paket Bundling
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ALACARTE MENU SECTION (FEATURED DISTINCT BUNDLING CARD & CLEAN STRAW PADDING) -->
+        <section id="menu" class="py-12 sm:py-16 md:py-24 bg-white border-b border-brand-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-14 space-y-2.5">
+                    <span class="px-3.5 py-1.5 rounded-full bg-brand-cream text-brand-dark border border-brand-border font-bold text-xs uppercase tracking-wider inline-block">
+                        Menu Satuan
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-black text-brand-dark">
+                        Daftar Menu Alacarte
+                    </h2>
+                    <p class="text-brand-dark/70 font-medium text-sm sm:text-base">
+                        Sajikan manis & segar yang dibuat langsung fresh saat dipesan.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                    
+                    <!-- Menu Item 1: Jasuke -->
+                    <div class="bg-brand-cream rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-brand-border flex flex-col justify-between space-y-4 sm:space-y-5 hover:border-brand-gold transition-all duration-300 group">
+                        <div class="space-y-3.5">
+                            <!-- Image Container with Proper Padding for Cutout -->
+                            <div class="w-full h-52 sm:h-64 md:h-72 flex items-center justify-center p-4">
+                                <img src="assets/img/jasuke.png" alt="Jasuke - Jagung Susu Keju" class="max-h-48 sm:max-h-56 md:max-h-60 object-contain group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <span class="inline-block px-3 py-1 rounded-full bg-amber-100 text-brand-dark text-[11px] font-bold">
+                                Camilan Hangat
+                            </span>
+                            <h3 class="text-xl sm:text-2xl font-extrabold text-brand-dark">Jasuke (Jagung Susu Keju)</h3>
+                            <p class="text-xs sm:text-sm text-brand-dark/70 font-medium leading-relaxed">
+                                Jagung manis pipil kukus hangat dengan mentega gurih, krimer kental manis, dan parutan keju cheddar melimpah.
+                            </p>
+                        </div>
+
+                        <div class="pt-4 border-t border-brand-border flex items-center justify-between">
+                            <div>
+                                <span class="block text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-brand-muted">Harga Satuan</span>
+                                <span class="text-xl sm:text-2xl font-black text-brand-dark">Rp 6.000</span>
+                            </div>
+                            <button onclick="pilihMenu('Jasuke (Jagung Susu Keju)', 6000)" class="px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-brand-gold text-brand-dark font-extrabold text-xs hover:bg-brand-gold-hover transition-colors">
+                                + PESAN
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Menu Item 2: Paket Bundling Kombo (FEATURED & DISTINCT DARK CARD) -->
+                    <div class="bg-brand-dark text-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 flex flex-col justify-between space-y-4 sm:space-y-5 relative shadow-lg group transform hover:-translate-y-1.5 transition-all duration-300">
+                        
+                        <!-- Distinct Badge Top Right -->
+                        <div class="absolute -top-3.5 right-4 sm:right-6 bg-brand-gold text-brand-dark font-black text-[10px] px-3.5 py-1 rounded-full uppercase tracking-wider shadow-sm flex items-center gap-1">
+                            <i class="fa-solid fa-star text-[9px]"></i> PAKET HEMAT
+                        </div>
+
+                        <div class="space-y-3.5">
+                            <!-- Image Container with Clean Padding -->
+                            <div class="w-full h-52 sm:h-64 md:h-72 flex items-center justify-center p-4">
+                                <img src="assets/img/bundling.png" alt="Paket Bundling CapJas" class="max-h-48 sm:max-h-56 md:max-h-60 object-contain group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <span class="inline-block px-3 py-1 rounded-full bg-brand-gold text-brand-dark text-[11px] font-extrabold">
+                                Paket Kombo
+                            </span>
+                            <h3 class="text-xl sm:text-2xl font-extrabold text-white">Paket Bundling Kombo</h3>
+                            <p class="text-xs sm:text-sm text-brand-cream/80 font-medium leading-relaxed">
+                                Paket kombinasi 1 Porsi Jasuke + 1 Cup Es Cappucino Cincau. Lebih hemat Rp 1.000 & kenyang!
+                            </p>
+                        </div>
+
+                        <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                            <div>
+                                <span class="block text-[10px] sm:text-[11px] font-bold text-white/50 line-through">Rp 13.000</span>
+                                <span class="text-xl sm:text-2xl font-black text-brand-gold">Rp 12.000</span>
+                            </div>
+                            <button onclick="pilihMenu('Bundling (Jasuke + Capcin)', 12000)" class="px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-brand-gold text-brand-dark font-extrabold text-xs hover:bg-white hover:text-brand-dark transition-colors">
+                                + PESAN
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Menu Item 3: Cappucino Cincau -->
+                    <div class="bg-brand-cream rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-brand-border flex flex-col justify-between space-y-4 sm:space-y-5 hover:border-brand-gold transition-all duration-300 group">
+                        <div class="space-y-3.5">
+                            <!-- Image Container with Proper Padding for Straw Cutout -->
+                            <div class="w-full h-52 sm:h-64 md:h-72 flex items-center justify-center p-4">
+                                <img src="assets/img/cappucino.png" alt="Es Cappucino Cincau" class="max-h-48 sm:max-h-56 md:max-h-60 object-contain group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <span class="inline-block px-3 py-1 rounded-full bg-amber-100 text-brand-dark text-[11px] font-bold">
+                                Minuman Segar
+                            </span>
+                            <h3 class="text-xl sm:text-2xl font-extrabold text-brand-dark">Es Cappucino Cincau</h3>
+                            <p class="text-xs sm:text-sm text-brand-dark/70 font-medium leading-relaxed">
+                                Racikan es cappucino rasa kopi khas dipadukan dengan serutan cincau hitam kenyal alami. Menyegarkan!
+                            </p>
+                        </div>
+
+                        <div class="pt-4 border-t border-brand-border flex items-center justify-between">
+                            <div>
+                                <span class="block text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-brand-muted">Harga Satuan</span>
+                                <span class="text-xl sm:text-2xl font-black text-brand-dark">Rp 7.000</span>
+                            </div>
+                            <button onclick="pilihMenu('Es Cappucino Cincau', 7000)" class="px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-brand-gold text-brand-dark font-extrabold text-xs hover:bg-brand-gold-hover transition-colors">
+                                + PESAN
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- INFO POSTER SHOWCASE (INFO.PNG) -->
+        <section id="harga" class="py-12 sm:py-16 md:py-24 bg-brand-cream border-b border-brand-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-8">
+                <div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-12 border border-brand-border grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
+                    
+                    <div class="lg:col-span-6 space-y-4 sm:space-y-6 text-left">
+                        <span class="px-3.5 py-1.5 rounded-full bg-amber-100 text-brand-dark font-bold text-xs uppercase tracking-wider inline-block">
+                            Patokan Harga Resmi
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-brand-dark">
+                            Acuan Harga Booth CapJas
+                        </h2>
+                        <p class="text-brand-dark/75 font-medium text-sm sm:text-base leading-relaxed">
+                            Kami selalu menyajikan daftar harga yang transparan dan jujur untuk setiap pelanggan booth maupun order online:
+                        </p>
+
+                        <div class="space-y-2.5 sm:space-y-3 font-semibold text-xs sm:text-sm pt-1">
+                            <div class="flex justify-between items-center bg-brand-cream p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-brand-border">
+                                <span class="font-bold text-brand-dark flex items-center gap-2">
+                                    <i class="fa-solid fa-bowl-food text-brand-dark"></i>
+                                    <span>JASUKE (Jagung Susu Keju)</span>
+                                </span>
+                                <span class="font-black text-base sm:text-lg text-brand-dark">Rp 6.000</span>
+                            </div>
+                            <div class="flex justify-between items-center bg-brand-cream p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-brand-border">
+                                <span class="font-bold text-brand-dark flex items-center gap-2">
+                                    <i class="fa-solid fa-mug-saucer text-brand-dark"></i>
+                                    <span>CAPPUCINO CINCAU</span>
+                                </span>
+                                <span class="font-black text-base sm:text-lg text-brand-dark">Rp 7.000</span>
+                            </div>
+                            <div class="flex justify-between items-center bg-amber-100 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-amber-300">
+                                <span class="font-bold text-brand-dark flex items-center gap-2">
+                                    <i class="fa-solid fa-fire text-brand-dark"></i>
+                                    <span>BUNDLING (JASUKE + CAPCIN)</span>
+                                </span>
+                                <span class="font-black text-base sm:text-lg text-brand-dark">Rp 12.000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Poster Image Display -->
+                    <div class="lg:col-span-6 flex justify-center">
+                        <div class="bg-brand-cream p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border border-brand-border max-w-lg w-full">
+                            <img src="assets/img/bundling.png" alt="Poster Resmi CapJas Corner" class="w-full h-auto rounded-lg sm:rounded-xl object-contain">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ORDER FORM & WHATSAPP CHECKOUT -->
+        <section id="pesan" class="py-12 sm:py-16 md:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
+                    
+                    <div class="lg:col-span-5 space-y-4 sm:space-y-6 text-left">
+                        <span class="px-3.5 py-1.5 rounded-full bg-brand-gold/15 text-brand-dark font-bold text-xs uppercase tracking-wider inline-block">
+                            Pesan Cepat
+                        </span>
+                        <h2 class="text-2xl sm:text-4xl font-black text-brand-dark">
+                            Formulir Pesanan Instant
+                        </h2>
+                        <p class="text-brand-dark/75 font-medium text-sm sm:text-base leading-relaxed">
+                            Silakan isi form di samping untuk membuat draf pesanan langsung ke WhatsApp booth CapJas Corner.
+                        </p>
+
+                        <div class="space-y-3 pt-1 font-medium text-xs">
+                            <div class="bg-brand-cream p-4 rounded-xl sm:rounded-2xl border border-brand-border space-y-1">
+                                <div class="text-xs sm:text-sm font-bold text-brand-dark flex items-center gap-2">
+                                    <i class="fa-solid fa-location-dot text-brand-dark"></i>
+                                    <span>Lokasi Booth Utama</span>
+                                </div>
+                                <div class="text-brand-dark/70 font-semibold leading-relaxed">Parkiran Belakang Kantin Politeknik Negeri Tanah Laut</div>
+                            </div>
+                            <div class="bg-brand-cream p-4 rounded-xl sm:rounded-2xl border border-brand-border space-y-1">
+                                <div class="text-xs sm:text-sm font-bold text-brand-dark flex items-center gap-2">
+                                    <i class="fa-solid fa-calendar-days text-brand-dark"></i>
+                                    <span>Jadwal Stand Buka</span>
+                                </div>
+                                <div class="text-brand-dark/70 font-semibold leading-relaxed">1 - 2 September ( Jam 08:00 - 16:00 WITA )</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7">
+                        <form id="orderForm" onsubmit="kirimWhatsApp(event)" class="bg-brand-cream rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-brand-border space-y-4 sm:space-y-5">
+                            
+                            <div class="border-b border-brand-border pb-3 sm:pb-4">
+                                <h3 class="text-xl sm:text-2xl font-extrabold text-brand-dark">Isi Detail Pesanan</h3>
+                                <p class="text-xs text-brand-dark/60 font-medium mt-1">Total estimasi akan dihitung secara otomatis.</p>
+                            </div>
+
+                            <div class="space-y-1.5">
+                                <label class="block text-xs font-bold uppercase tracking-wider text-brand-dark">Nama Pemesan *</label>
+                                <input type="text" id="nama" required class="w-full bg-white rounded-xl border border-brand-border px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold font-medium text-brand-dark" placeholder="Masukkan nama Anda">
+                            </div>
+
+                            <div class="space-y-1.5">
+                                <label class="block text-xs font-bold uppercase tracking-wider text-brand-dark">Pilihan Menu *</label>
+                                <select id="pilihanMenu" onchange="hitungTotal()" class="w-full bg-white rounded-xl border border-brand-border px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold font-medium text-brand-dark">
+                                    <option value="Bundling (Jasuke + Capcin)" data-harga="12000">Bundling (Jasuke + Capcin) — Rp 12.000</option>
+                                    <option value="Jasuke (Jagung Susu Keju)" data-harga="6000">Jasuke (Jagung Susu Keju) — Rp 6.000</option>
+                                    <option value="Es Cappucino Cincau" data-harga="7000">Es Cappucino Cincau — Rp 7.000</option>
+                                </select>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 items-center">
+                                <div class="space-y-1.5">
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-brand-dark">Jumlah Porsi</label>
+                                    <div class="flex items-center bg-white rounded-xl border border-brand-border overflow-hidden">
+                                        <button type="button" onclick="ubahJumlah(-1)" class="px-4 py-3 font-bold text-brand-dark hover:bg-amber-100 transition-colors">-</button>
+                                        <input type="number" id="jumlah" min="1" value="1" onchange="hitungTotal()" onkeyup="hitungTotal()" class="w-full text-center bg-transparent font-bold text-sm focus:outline-none text-brand-dark">
+                                        <button type="button" onclick="ubahJumlah(1)" class="px-4 py-3 font-bold text-brand-dark hover:bg-amber-100 transition-colors">+</button>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-3.5 rounded-xl border border-brand-border text-center">
+                                    <span class="block text-[10px] font-bold uppercase tracking-wider text-brand-muted">Estimasi Total</span>
+                                    <span id="displayTotal" class="font-black text-xl sm:text-2xl text-brand-dark">Rp 12.000</span>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1.5">
+                                <label class="block text-xs font-bold uppercase tracking-wider text-brand-dark">Catatan Tambahan</label>
+                                <textarea id="catatan" rows="3" class="w-full bg-white rounded-xl border border-brand-border px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold font-medium text-brand-dark" placeholder="Contoh: Es sedikit saja..."></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 sm:py-4 rounded-xl bg-brand-dark text-white font-extrabold text-sm hover:bg-brand-gold hover:text-brand-dark transition-colors uppercase tracking-wider flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-lg"></i>
+                                <span>Kirim Pesanan ke WhatsApp</span>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark text-white py-8 sm:py-10 border-t border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-medium text-center md:text-left">
+            <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
+                <div class="w-8 h-8 rounded-lg bg-white/10 p-1 flex items-center justify-center">
+                    <img src="assets/img/logo.png" alt="CapJas Logo Icon" class="h-full object-contain">
+                </div>
+                <div>
+                    <span class="font-bold text-sm tracking-tight text-white block">CapJas Corner</span>
+                    <span class="text-[10px] text-white/50 block">Parkiran Belakang Kantin Politeknik Negeri Tanah Laut</span>
+                </div>
+            </div>
+            <div class="text-white/60">&copy; 2026 CapJas Corner. All Rights Reserved.</div>
+        </div>
+    </footer>
+
+    <!-- LENIS SMOOTH SCROLL JS ENGINE -->
+    <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
+
+    <!-- MAIN APP & SCROLL SPY SCRIPTS -->
+    <script>
+        // Initialize Lenis Smooth Scroll Engine
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            smoothTouch: false,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Active Link Underline ScrollSpy Indicator Logic
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section[id]');
+
+        function updateActiveNav() {
+            let currentSection = 'beranda';
+            const scrollPosition = window.scrollY + 120;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-section') === currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNav);
+        lenis.on('scroll', updateActiveNav);
+        updateActiveNav();
+
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetEl = document.querySelector(targetId);
+                if (targetEl) {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.className = "fa-solid fa-bars text-lg";
+                    lenis.scrollTo(targetEl, { offset: -70 });
+                }
+            });
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.className = "fa-solid fa-bars text-lg";
+            } else {
+                menuIcon.className = "fa-solid fa-xmark text-lg";
+            }
+        });
+
+        // Order Calculation Logic
+        function hitungTotal() {
+            const selectMenu = document.getElementById('pilihanMenu');
+            const selectedOption = selectMenu.options[selectMenu.selectedIndex];
+            const harga = parseInt(selectedOption.getAttribute('data-harga')) || 12000;
+            
+            let jumlah = parseInt(document.getElementById('jumlah').value) || 1;
+            if (jumlah < 1) {
+                jumlah = 1;
+                document.getElementById('jumlah').value = 1;
+            }
+
+            const total = harga * jumlah;
+            document.getElementById('displayTotal').innerText = "Rp " + total.toLocaleString('id-ID');
+        }
+
+        function ubahJumlah(delta) {
+            const inputJumlah = document.getElementById('jumlah');
+            let val = parseInt(inputJumlah.value) || 1;
+            val += delta;
+            if (val < 1) val = 1;
+            inputJumlah.value = val;
+            hitungTotal();
+        }
+
+        function pilihMenu(namaMenu, harga) {
+            const selectMenu = document.getElementById('pilihanMenu');
+            for (let i = 0; i < selectMenu.options.length; i++) {
+                if (selectMenu.options[i].value.includes(namaMenu) || selectMenu.options[i].text.includes(namaMenu)) {
+                    selectMenu.selectedIndex = i;
+                    break;
+                }
+            }
+            hitungTotal();
+            
+            const orderEl = document.getElementById('pesan');
+            if (orderEl) {
+                lenis.scrollTo(orderEl, { offset: -70 });
+            }
+        }
+
+        // WhatsApp Checkout Direct (UPDATED PHONE NUMBER: 083112294396)
+        function kirimWhatsApp(e) {
+            e.preventDefault();
+            
+            const nomorWhatsApp = "6283112294396";
+            const nama = document.getElementById('nama').value.trim();
+            const menu = document.getElementById('pilihanMenu').value;
+            const jumlah = document.getElementById('jumlah').value;
+            const catatan = document.getElementById('catatan').value.trim() || "-";
+            const totalText = document.getElementById('displayTotal').innerText;
+
+            const pesan = `Halo CapJas Corner! Saya mau pesan:%0A%0A` +
+                          `*Nama:* ${encodeURIComponent(nama)}%0A` +
+                          `*Menu:* ${encodeURIComponent(menu)}%0A` +
+                          `*Jumlah:* ${encodeURIComponent(jumlah)} Porsi%0A` +
+                          `*Total:* ${encodeURIComponent(totalText)}%0A` +
+                          `*Catatan:* ${encodeURIComponent(catatan)}%0A%0A` +
+                          `Mohon diproses ya kak, terima kasih!`;
+
+            window.open(`https://wa.me/${nomorWhatsApp}?text=${pesan}`, '_blank');
+        }
+    </script>
+</body>
+</html>
